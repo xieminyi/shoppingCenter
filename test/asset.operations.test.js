@@ -22,27 +22,45 @@ describe("Assets data operations", () => {
 	});
 	//!\ TEST :
 	// - implementations
-	// describe("function: createAsset", () => {
-	// 	//!\ TEST - successful responding:
-	// 	it("Should create new asset", (done) => {
-	// 		let asset = {
-	// 			name: 'Asset 1',			  
-	// 		  	dimensions: '50cm x 100cm x 250cm',
-	// 		  	center_name: '',
-	// 		  	status: 'inactive',
-	// 		  	location: 'out side of Woolworth'
-	// 		};
-	// 		chai.request(server)
- //            	.post('/api/create-asset')
- //            	.send(asset)
- //            	.end((err, res) => {
- //            		res.should.have.status(200);
- //            		res.body.should.be.a('object');
- //            		res.body.should.have.property('status').equal(true);
- //            		done();
- //            	});
-	// 	});
-	// });
+	describe("function: createAsset", () => {
+		//!\ TEST - successful responding:
+		it("Should create new asset", (done) => {
+			let asset = {
+				name: 'Asset X002',			  
+			  	dimensions: '50cm x 100cm x 250cm',
+			  	center_name: '',
+			  	status: 'inactive',
+			  	location: 'Along side Super market'
+			};
+			chai.request(server)
+            	.post('/api/create-asset')
+            	.send(asset)
+            	.end((err, res) => {
+            		res.should.have.status(200);
+            		res.body.should.be.a('object');
+            		res.body.should.have.property('status').equal(true);
+            		done();
+            	});
+		});
+		it("Should create new asset", (done) => {
+			let asset = {
+				name: 'Asset X003',			  
+			  	dimensions: '50cm x 100cm x 250cm',
+			  	center_name: 'Center A',
+			  	status: 'inactive',
+			  	location: 'Along side Super market'
+			};
+			chai.request(server)
+            	.post('/api/create-asset')
+            	.send(asset)
+            	.end((err, res) => {
+            		res.should.have.status(200);
+            		res.body.should.be.a('object');
+            		res.body.should.have.property('status').equal(true);
+            		done();
+            	});
+		});
+	});
 	describe("function: findAssets", () => {
 		//!\ TEST - successful responding:
 		it("Should find some assets", (done) => {
@@ -58,16 +76,16 @@ describe("Assets data operations", () => {
 	});
 	describe("function: updateAsset", () => {
 		//!\ TEST - successful responding:
-		it("Should find some assets", (done) => {
+		it("Should update some assets", (done) => {
 			chai.request(server)
             	.post('/api/update-asset')
             	.send({
-            		conditions: {name: 'Asset A'},
+            		conditions: {_id: 'testing-asset-id'},
             		update: {status: 'inactive'}
             	})
             	.end((err, res) => {
             		res.body.should.be.a('object');
-            		res.body.should.have.property('status').equal(true);
+            		res.body.should.have.property('status').equal(false);
             		done();
             	});
 		});

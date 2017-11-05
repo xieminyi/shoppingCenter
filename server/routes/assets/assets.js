@@ -1,6 +1,7 @@
 // server/routes/assets/assets.js
 
 const dataOpe = require('../../api/database');
+const log     = require('../logs');
 
 //!\ METHOD : create a new asset
 // - @param http request and response
@@ -19,7 +20,10 @@ exports.createAsset = function(req, res){
 		}
 
 		dataOpe.createAsset(asset)
-			.then(asset => res.json({status: true}))
+			.then(data => {
+				log.createLogs({name:asset.name, activity:'create asset'});
+				res.json({status: true});
+			})
 			.catch(err => res.json({status: false}));
 		return;
 
@@ -78,7 +82,10 @@ exports.updateAsset = function(req, res){
 		}
 
 		dataOpe.updateAsset(conditions, update)
-			.then(asset => res.json({status: true}))
+			.then(asset => {
+				log.createLogs({name:'manager', activity:'update asset with id: '+conditions._id});
+				res.json({status: true});
+			})
 			.catch(err => res.json({status: false}));
 		return;
 		

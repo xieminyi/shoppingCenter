@@ -23,55 +23,55 @@ describe("Shopping centers data operations", () => {
 	// - implementations
 	describe("function: create_center", () => {
 		//!\ TEST - successful responding:
-		// it("Should create new center with new associated assets", (done) => {
-		// 	let center = {
-		// 		name: 'Center C',			  // Shopping center address
-		// 	  	address: '1 Princes HW, NSW, 2000',
-		// 	  	assets_id: [10, 21, 30]
-		// 	};
-		// 	let assets = [
-		// 		{
-		// 			name: 'Asset 5',			  
-		// 		  	dimensions: '50cm x 100cm x 250cm',
-		// 		  	center_name: 'Center C',
-		// 		  	status: 'active',
-		// 		  	location: 'East'
-		// 		},
-		// 		{
-		// 			name: 'Asset 7',			  
-		// 		  	dimensions: '50cm x 100cm x 250cm',
-		// 		  	center_name: 'Center C',
-		// 		  	status: 'active',
-		// 		  	location: 'North'
-		// 		}
-		// 	];
-		// 	chai.request(server)
-  //           	.post('/api/create-center')
-  //           	.send({center: center, assets: assets})
-  //           	.end((err, res) => {
-  //           		res.should.have.status(200);
-  //           		res.body.should.be.a('object');
-  //           		res.body.should.have.property('status').equal(true);
-  //           		done();
-  //           	});
-		// });
-		// it("Should create new center without new associated assets", (done) => {
-		// 	let center = {
-		// 		name: 'Center D',			  // Shopping center address
-		// 	  	address: '2 Queen Street, NSW, 2000',
-		// 	  	assets_id: [42,55,61]
-		// 	};
-		// 	let assets = [];
-		// 	chai.request(server)
-  //           	.post('/api/create-center')
-  //           	.send({center: center, assets: assets})
-  //           	.end((err, res) => {
-  //           		res.should.have.status(200);
-  //           		res.body.should.be.a('object');
-  //           		res.body.should.have.property('status').equal(true);
-  //           		done();
-  //           	});
-		// });
+		it("Should create new center with new associated assets", (done) => {
+			let center = {
+				name: 'Center A',			  // Shopping center address
+			  	address: '111 Bay St, NSW, 2500',
+			  	assets_id: [10, 21, 30]
+			};
+			let assets = [
+				{
+					name: 'Asset P1',			  
+				  	dimensions: '50cm x 100cm x 250cm',
+				  	center_name: 'Shopping Center ABC',
+				  	status: 'active',
+				  	location: 'East'
+				},
+				{
+					name: 'Asset P2',			  
+				  	dimensions: '50cm x 100cm x 250cm',
+				  	center_name: 'Shopping Center ABC',
+				  	status: 'active',
+				  	location: 'North'
+				}
+			];
+			chai.request(server)
+            	.post('/api/create-center')
+            	.send({center: center, assets: assets})
+            	.end((err, res) => {
+            		res.should.have.status(200);
+            		res.body.should.be.a('object');
+            		res.body.should.have.property('status').equal(true);
+            		done();
+            	});
+		});
+		it("Should create new center without new associated assets", (done) => {
+			let center = {
+				name: 'Shopping Center D',			  // Shopping center address
+			  	address: '52 King Street, NSW, 2000',
+			  	assets_id: [42,55,61]
+			};
+			let assets = [];
+			chai.request(server)
+            	.post('/api/create-center')
+            	.send({center: center, assets: assets})
+            	.end((err, res) => {
+            		res.should.have.status(200);
+            		res.body.should.be.a('object');
+            		res.body.should.have.property('status').equal(true);
+            		done();
+            	});
+		});
 	});
 	describe("function: find_centers", () => {
 		//!\ TEST - successful responding:

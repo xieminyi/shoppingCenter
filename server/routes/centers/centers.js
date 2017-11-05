@@ -1,6 +1,7 @@
 // server/routes/centers/centers.js
 
 const dataOpe = require('../../api/database');
+const log     = require('../logs');
 
 //!\ METHOD : create a new center
 // - @param http request and response
@@ -30,7 +31,10 @@ exports.createCenter = function(req, res){
 				.then(() => { 
 					center.assets_id = associatedAssetsId; // update associated assets id
 					dataOpe.createCenter(center)
-						.then(center => res.json({status: true}))
+						.then(data => {
+							log.createLogs({name:center.name, activity:'create center'});
+							res.json({status: true});
+						})
 						.catch(err => res.json({status: false}));
 				})
 				.catch(console.error);
@@ -68,7 +72,9 @@ exports.findCenters = function(req, res){
 		}
 
 		dataOpe.findCenters(param)
-			.then(centers => res.json(centers))
+			.then(centers => {
+				res.json(centers);
+			})
 			.catch(err => res.json({status: false}));
 		return;
 		

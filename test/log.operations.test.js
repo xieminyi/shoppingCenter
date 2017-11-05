@@ -26,7 +26,7 @@ describe("logs data operations", () => {
 		it("Should create new log", (done) => {
 			let log = {
 				name: 'Center A',			  
-			  	activity: 'Create Shopping center'
+			  	activity: 'Update center information'
 			};
 			logs.createLogs(log)
 				.then(act => {

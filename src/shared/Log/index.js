@@ -7,7 +7,7 @@ const helpers = {
 	findLogs(param) {
 		let url = '/api/find-logs';
 		if(!param) {
-			param == {};
+			param = {};
 		}
 		else{
 			Object.keys(param).forEach(key => url += '?' + key + '=' + param[key]);
