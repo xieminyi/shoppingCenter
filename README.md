@@ -1,4 +1,4 @@
-This is exercise for building Assets and Shopping center API.
+This is exercise for Node.js API.
 
 Reactjs and Nodejs are used for this exercise. 
 
@@ -30,26 +30,30 @@ node server
 mocha test
 ```
 
+## Project design patterns (from front end to back end)
+
+/src/components (All html components and their events)
+
+/src/shared (All services supporting html elements)
+
+/server/routes (All api interface for front end services)
+
+/server/api (The supports for api functions, such as query to database)
+
+
 ## Summary of project
 
 #### Front end (Reactjs)
 
 ##### Major Structure
 
-/src
- |-----/components
- |           |------/App (core application file)
- |           |------/Main (routes of each page)
- |           |------/Homepage (Links to other pages and authoritation)
- |           |------/ShoppingCenter (shopping center list)
- |           |------/Assets (Assets list and search)
- |           |------/Log (Activities log)
- |           |------/NotFound (other entries)
- |-----/shared
-             |------/Centers (data queries from database, such as fetching center list)
-             |------/Assets (data queries from database)
-             |------/Log (data queries from database)
-             |------/Auth (validation from database)
+/src/components
+
+Including all maijor components, such as pages (/ShopingCenter, /Assets) and routers (/Main)
+
+/src/shared
+            
+Including all the services for components, and they are communicated to backend api, such as queries to database. 
 
 ##### Note
 
@@ -59,33 +63,29 @@ Access token validation service is used for both Shopping centers and Assets pag
 
 ##### Major Structure
 
-/sever
- |-----/api
- |           |------/database (queries to database)
- |           |------assets.data.operations.js 
- |           |------center.data.operations.js
- |           |------log.data.operations.js
- |           |------auth.data.operations.js
- |-----/routes
-             |------/centers (preprocessing of data* + http require and response)
-             |------/assets (as above)
-             |------/logs (as above)
-             |------/auth (as aboce)
-             |------index.js (routers)
+/sever/api
+ 
+Including database setup, and queries to database
+
+/server/routes
+             
+Including routers setting and api functions
+
+/server/config.js
+
+Including configurations of mongodb environment variables
 
 ##### Note
 
-1) For searching on assets, attributes "name", "shopping center name", and "status" are indexed for faster search speed (Mongodb is in used)
+1) For searching of assets, attributes "name", "shopping center name", and "status" are indexed for faster search speed (Mongodb is in used)
 
 2) Mongodb environment setting is in /server/config.js
 
 3) Testing is included in /test
 
-4) * proprocessing of data including reading requires and completing adding data. Such as, adding a shopping center may need adding several new assets. 
+4) Proprocessing of data including reading requires and completing adding data. Such as, adding a shopping center may need adding several new assets. 
 
-#### Future work
 
-1) Complete UI (adding shoppong center, adding assets, and edting center or asset)
 
 
 
